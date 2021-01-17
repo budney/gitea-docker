@@ -1,4 +1,4 @@
-Port 22
+Port ${SSH_LISTEN_PORT}
 Protocol 2
 
 LogLevel INFO
@@ -19,6 +19,11 @@ HostCertificate /data/ssh/ssh_host_ecdsa_cert
 HostKey /data/ssh/ssh_host_dsa_key
 HostCertificate /data/ssh/ssh_host_dsa_cert
 
+# These are overridden by corresponding settings in *.conf files.
+AddressFamily any
+ListenAddress 0.0.0.0
+ListenAddress ::
+
 AuthorizedKeysFile .ssh/authorized_keys
 AuthorizedPrincipalsFile .ssh/authorized_principals
 TrustedUserCAKeys /data/git/.ssh/gitea-trusted-user-ca-keys.pem
@@ -35,7 +40,7 @@ ChallengeResponseAuthentication no
 PasswordAuthentication no
 PermitEmptyPasswords no
 
-AllowUsers git
+AllowUsers ${USER}
 
 Banner none
 Subsystem sftp /usr/lib/ssh/sftp-server
