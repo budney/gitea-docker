@@ -1,4 +1,4 @@
-BASENAME=gitea-docker
+BASENAME=gitea
 BUILDNAME=$(BASENAME)-buildx
 
 .PHONY: all builder prune delete clean distclean
